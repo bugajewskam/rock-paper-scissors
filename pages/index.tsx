@@ -1,12 +1,14 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import { useState } from 'react'
-import AlertDialog from '../conponents/RulesDesktop'
-import styles from '../styles/Home.module.css'
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import { useState } from "react";
+import AlertDialog from "../conponents/RulesDesktop";
+import Start from "../conponents/start";
+import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   const [open, setOpen] = useState(false);
+  const [score, setScore] = useState(0)
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -16,11 +18,13 @@ const Home: NextPage = () => {
     setOpen(false);
   };
   return (
-    <><button onClick={handleClickOpen}>Rules</button>
-    <AlertDialog handleClose={handleClose} open={open} /></>
+    <><div className="open">
+      <button className="btnRules" onClick={handleClickOpen}>Rules</button>
+    </div>
+    <AlertDialog handleClose={handleClose} open={open} />
+    <Start/>
+    </>
+  );
+};
 
-
-  )
-}
-
-export default Home
+export default Home;
