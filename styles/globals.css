@@ -4,7 +4,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    background-image: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
+  background-image: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
 }
 
 a {
@@ -15,38 +15,54 @@ a {
 * {
   box-sizing: border-box;
 }
-.rules{
+.rules {
   margin: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 300px;
-  
 }
-button{
-  border:none;
+button {
+  border: none;
   background-color: transparent;
 }
-.open{
+.open {
   display: block;
-  position:absolute;
+  position: absolute;
   bottom: 20px;
   right: 20px;
 }
-.btnRules{
+.btnRules {
   border: solid 1px black;
   background-color: transparent;
   border-radius: 8px;
 }
-.start{
-  
+.start {
   width: 600px;
   height: 600px;
   display: flex;
-  margin:auto;
+  margin: auto;
   border: solid white 1px;
   background-color: transparent;
 }
-.logo{
-  
+.logo {
+  border: red solid 2px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: 120px;
+  margin: 20px;
+  border-radius: 10px;
+  padding: 10px;
+}
+.score {
+  background-color: white;
+  border-radius: 10px;
+}
+.number {
+  color: red;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
 }

@@ -1,14 +1,14 @@
-export interface LogoProps{
-    score:number
-}
+import { useContext } from "react";
+import { ScoreContext } from "../pages/_app";
 
-export default function Logo({score}:LogoProps) {
+export default function Logo() {
+  const { score } = useContext(ScoreContext);
   return (
     <div className="logo">
       <div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlnsXlink="http://www.w3.org/1999/xlink"
           width="162"
           height="99"
         >
@@ -38,14 +38,14 @@ export default function Logo({score}:LogoProps) {
             />
           </defs>
           <g fill="none" transform="translate(-30 -27)">
-            <use fill="#000" filter="url(#a)" xlink:href="#b" />
-            <use fill="#FFF" xlink:href="#b" />
+            <use fill="#000" filter="url(#a)" xlinkHref="#b" />
+            <use fill="#FFF" xlinkHref="#b" />
           </g>
         </svg>
       </div>
       <div className="score">
         <h3>SCORE</h3>
-        <h5>{score}</h5>
+        <div className="number">{score}</div>
       </div>
     </div>
   );
