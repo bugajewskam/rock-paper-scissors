@@ -7,6 +7,12 @@ import Rock from "./image/Rock";
 import Scissors from "./image/Scissors";
 import Triangle from "./image/Triangle";
 
+export const choice = ["paper", "rock","scissors"]
+export const getRandom = ()=>{
+    return choice[Math.floor(Math.random()*3)]
+
+}
+
 export default function Choice() {
   const { setChoice } = useContext(ScoreContext);
   const handlePaper = () => {
