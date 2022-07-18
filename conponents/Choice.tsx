@@ -1,29 +1,39 @@
 import { setUncaughtExceptionCaptureCallback } from "process";
 import * as React from "react";
 import { useContext } from "react";
-import { ScoreContext } from "../pages/_app";
+import { ChoiceType, ScoreContext } from "../pages/_app";
 import Paper from "./image/Paper";
 import Rock from "./image/Rock";
 import Scissors from "./image/Scissors";
 import Triangle from "./image/Triangle";
 
-export const choice = ["paper", "rock","scissors"]
-export const getRandom = ()=>{
-    return choice[Math.floor(Math.random()*3)]
-
-}
+export const choice = ["paper", "rock", "scissors"];
+export const getRandom = () => {
+  return choice[Math.floor(Math.random() * 3)];
+};
 
 export default function Choice() {
-  const { setChoice } = useContext(ScoreContext);
+  const { setChoice, setComputerChoice } = useContext(ScoreContext);
+
+  const handelCompyterChoice = () => {
+    setTimeout(() => {
+      const result = getRandom();
+
+      setComputerChoice(result);
+    }, 1500);
+  };
   const handlePaper = () => {
     setChoice("paper");
+    handelCompyterChoice();
   };
-  const handleRock=()=>{
-    setChoice("rock")
-  }
-  const handleScissors =()=>{
-    setChoice("scissors")
-  }
+  const handleRock = () => {
+    setChoice("rock");
+    handelCompyterChoice();
+  };
+  const handleScissors = () => {
+    setChoice("scissors");
+    handelCompyterChoice();
+  };
   return (
     <div className="choice">
       <Triangle />
@@ -38,7 +48,7 @@ export default function Choice() {
         </button>
       </div>
       <div className="scissors">
-        <button onClick={handleScissors }className="btn scissorsColor">
+        <button onClick={handleScissors} className="btn scissorsColor">
           <Scissors />
         </button>
       </div>

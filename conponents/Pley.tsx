@@ -11,21 +11,18 @@ export const IconMaping = {
   scissors: <Scissors />,
 };
 
-export const computer = ["paper", "rock","scissors"]
-const getRandom = ()=>{
-
-}
-
 
 
 export default function Play() {
-  const { choice, setChoice } = useContext(ScoreContext);
+  const { choice, setChoice, computerChoice, setComputerChoice } = useContext(ScoreContext);
   const handleReturn = () => {
     setChoice(null);
+    setComputerChoice(null)
   };
   return (
     <>
       {IconMaping[choice]}
+      {IconMaping[computerChoice]}
       <button onClick={handleReturn}>return</button>
     </>
   );
