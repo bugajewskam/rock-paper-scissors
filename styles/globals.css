@@ -70,6 +70,7 @@ button {
 }
 .choice{
   display: flex;
+  position:relative;
   justify-content: center;
   margin-top: 80px;
 }
@@ -82,22 +83,22 @@ button {
 .paper{
   position: absolute;
   background-color: transparent;
-  top:180px;
-  left:550px;
+  top:-40px;
+  left:75px;
   border-radius: 50%;
   
 }
 .rock{
   position: absolute;
   background-color: transparent;
-  top:180px;
-  left:850px
+  top:-40px;
+  left:365px
 }
 .scissors{
   position: absolute;
   background-color: transparent;
-  top:430px;
-  left:700px;
+  top:160px;
+  left:225px;
 }
 .paperColor{
   border-style: solid;
@@ -114,4 +115,53 @@ button {
   border-style: solid;
   border-width: 15px;
   border-color:hsl(39, 89%, 49%)
+}
+.play{
+  position:relative;
+}
+.userChoice{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position:absolute;
+  top:80px;
+  left:80px;
+  background-color: white;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
+
+.computerChoice{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position:absolute;
+  top:80px;
+  right:80px;
+  background-color: white;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+
+}
+.result{
+  font-size: 30px;
+  flex-direction: column;
+  color:white;
+  position:absolute;
+  left:223px;
+  top:200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid red 2px;
+  width: 150px;
+}
+.return{
+  border:none;
+  font-size: 25px;
+  background-color: white;
+  border-radius: 8px;
+  color:blue;
 }
