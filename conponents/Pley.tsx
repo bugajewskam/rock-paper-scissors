@@ -1,5 +1,4 @@
-
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ScoreContext } from "../pages/_app";
 import Paper from "./image/Paper";
 import Rock from "./image/Rock";
@@ -10,20 +9,31 @@ export const IconMaping = {
   rock: <Rock />,
   scissors: <Scissors />,
 };
+interface PlayProps {
+  handleReturn: () => void;
+}
+export default function Play({ handleReturn }: PlayProps) {
+  const {
+    choice,
+    setChoice,
+    computerChoice,
+    setComputerChoice,
+    winOrLost,
+    setWinOrLost,
+  } = useContext(ScoreContext);
 
-
-
-export default function Play() {
-  const { choice, setChoice, computerChoice, setComputerChoice } = useContext(ScoreContext);
-  const handleReturn = () => {
-    setChoice(null);
-    setComputerChoice(null)
-  };
   return (
     <>
-      {IconMaping[choice]}
-      {IconMaping[computerChoice]}
-      <button onClick={handleReturn}>return</button>
+      <div className="play">
+        <div className="userChoice">{IconMaping[choice]}</div>
+        <div className="computerChoice">{IconMaping[computerChoice]}</div>
+        <div className="result">
+          {winOrLost === "win" && <div>win</div>}
+          {winOrLost === "lost" && <div>lost</div>}
+          {winOrLost === "remis" && <div>remis</div>}
+          <button className="return" onClick={handleReturn}>return</button>
+        </div>
+      </div>
     </>
   );
 }

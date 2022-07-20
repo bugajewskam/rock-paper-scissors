@@ -7,48 +7,49 @@ import Rock from "./image/Rock";
 import Scissors from "./image/Scissors";
 import Triangle from "./image/Triangle";
 
-export const choice = ["paper", "rock", "scissors"];
-export const getRandom = () => {
-  return choice[Math.floor(Math.random() * 3)];
-};
+interface ChoiceProps {
+  handleUserChoice: (e: any) => void;
+  handlePaper: (e: any) => void;
+  handleRock: (e: any) => void;
+  handleScissors: (e: any) => void;
+}
 
-export default function Choice() {
-  const { setChoice, setComputerChoice } = useContext(ScoreContext);
+export default function Choice({
+  handleUserChoice,
+  handlePaper,
+  handleScissors,
+  handleRock,
+}: ChoiceProps) {
+  const {
+    setChoice,
+    setComputerChoice,
+    choice,
+    computerChoice,
+    setWinOrLost,
+    winOrLost,
+    score,
+    setScore,
+  } = useContext(ScoreContext);
 
-  const handelCompyterChoice = () => {
-    setTimeout(() => {
-      const result = getRandom();
-
-      setComputerChoice(result);
-    }, 1500);
-  };
-  const handlePaper = () => {
-    setChoice("paper");
-    handelCompyterChoice();
-  };
-  const handleRock = () => {
-    setChoice("rock");
-    handelCompyterChoice();
-  };
-  const handleScissors = () => {
-    setChoice("scissors");
-    handelCompyterChoice();
-  };
   return (
     <div className="choice">
       <Triangle />
-      <div className="paper" onClick={handlePaper}>
-        <button className="btn paperColor">
+      <div className="paper">
+        <button className="btn paperColor" onClick={handlePaper} value="paper">
           <Paper />
         </button>
       </div>
       <div className="rock">
-        <button onClick={handleRock} className="btn rockColor">
+        <button onClick={handleRock} value="rock" className="btn rockColor">
           <Rock />
         </button>
       </div>
       <div className="scissors">
-        <button onClick={handleScissors} className="btn scissorsColor">
+        <button
+          onClick={handleScissors}
+          value="scissors"
+          className="btn scissorsColor"
+        >
           <Scissors />
         </button>
       </div>
