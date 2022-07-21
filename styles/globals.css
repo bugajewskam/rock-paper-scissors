@@ -34,26 +34,27 @@ button {
   right: 20px;
 }
 .btnRules {
-  border: solid 1px white;
+  border: solid 1px hsl(217, 16%, 45%);
   background-color: transparent;
   border-radius: 8px;
+  font-size: large;
+  color: hsl(217, 16%, 45%);
 }
 .start {
   width: 600px;
   height: 600px;
   display: flex;
   margin: auto;
-  border: solid white 1px;
   background-color: transparent;
   flex-direction: column;
 }
 .logo {
-  border: red solid 2px;
+  border: hsl(217, 16%, 45%) solid 3px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 90%;
-  height: 110px;
+  height: 130px;
   margin: 20px;
   border-radius: 10px;
   padding: 10px;

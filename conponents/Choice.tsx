@@ -8,14 +8,12 @@ import Scissors from "./image/Scissors";
 import Triangle from "./image/Triangle";
 
 interface ChoiceProps {
-  handleUserChoice: (e: any) => void;
   handlePaper: (e: any) => void;
   handleRock: (e: any) => void;
   handleScissors: (e: any) => void;
 }
 
 export default function Choice({
-  handleUserChoice,
   handlePaper,
   handleScissors,
   handleRock,

@@ -1,6 +1,6 @@
 import { getAutoHeightDuration } from "@mui/material/styles/createTransitions";
 import * as React from "react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ChoiceType, ScoreContext } from "../pages/_app";
 import Choice from "./Choice";
 import Triangle from "./image/Triangle";
@@ -23,6 +23,7 @@ export default function Start() {
     setWinOrLost,
     winOrLost,
   } = useContext(ScoreContext);
+  const [isChange, setIsChange] = useState(false);
 
   const handleReturn = () => {
     setChoice(null);
@@ -30,55 +31,58 @@ export default function Start() {
     setWinOrLost("empty");
   };
 
-  
-  const handelComputerChoice = () => {
-    const result = getRandom();
-    setComputerChoice(result);
-    console.log(`Wybór komputer${computerChoice}`);
-  };
+  const handleWin = React.useCallback(
+    (choice: ChoiceType, computerChoice: ChoiceType) => {
+      if (
+        (choice === "rock" && computerChoice === "scissors") ||
+        (choice === "paper" && computerChoice === "rock") ||
+        (choice === "scissors" && computerChoice === "paper")
+      ) {
+        setWinOrLost("win");
+        setScore((prev) => prev + 1);
+      } else if (choice == computerChoice) {
+        setWinOrLost("remis");
+      } else {
+        setWinOrLost("lost");
+      }
+    },
+    [setWinOrLost, setScore]
+  );
+  const handelComputerChoice = React.useCallback(() => {
+    const interval = setInterval(() => {
+      const result = getRandom();
+      setComputerChoice(result);
+      setIsChange(true);
+    }, 200);
+    setTimeout(() => {
+      clearInterval(interval);
+      setIsChange(false);
+    }, 2000);
+  }, [setComputerChoice]);
 
-  const handleWin = (choice: ChoiceType, computerChoice: ChoiceType) => {
-    if (
-      (choice === "rock" && computerChoice === "scissors") ||
-      (choice === "paper" && computerChoice === "rock") ||
-      (choice === "scissors" && computerChoice === "paper")
-    ) {
-      setWinOrLost("win");
-      setScore((prev) => prev + 1);
-    } else if (choice == computerChoice) {
-      setWinOrLost("remis");
-    } else {
-      setWinOrLost("lost");
-    }
-    console.log(winOrLost);
-  };
-  const handleUserChoice = React.useCallback((e: any) => {
-    const newChoice = e.target.value;
-    setChoice(newChoice);
-  },[choice]);
-  const handlePaper= (e:any) =>{
-    setChoice("paper")
-  }
-  const handleScissors= (e:any) =>{
-    setChoice("scissors")
-  }
-  const handleRock= (e:any) =>{
-    setChoice("rock")
-  }
+  const handleUserChoice = React.useCallback(
+    (value: ChoiceType) => () => {
+      setChoice(value);
+      handelComputerChoice();
+    },
+    [setChoice, handelComputerChoice]
+  );
   React.useEffect(() => {
-    handelComputerChoice();
-    handleWin(choice, computerChoice);
-  }, [choice, computerChoice]);
-  console.log(`wybor człowieka ${choice}`);
-  
-  console.log(
-    `wybor człowieka ${choice} kompytera ${computerChoice} wynik ${winOrLost}`
-    );
+    if (choice && computerChoice && !isChange) {
+      handleWin(choice, computerChoice);
+    }
+  }, [choice, computerChoice, isChange, handleWin]);
+  console.log(choice, computerChoice, winOrLost);
   return (
     <div className="start">
       <Logo />
-      {choice === null && <Choice handleUserChoice={handleUserChoice} handlePaper={handlePaper}
-      handleRock={handleRock} handleScissors={handleScissors} />}
+      {choice === null && (
+        <Choice
+          handlePaper={handleUserChoice("paper")}
+          handleRock={handleUserChoice("rock")}
+          handleScissors={handleUserChoice("scissors")}
+        />
+      )}
       {choice !== null && <Play handleReturn={handleReturn} />}
     </div>
   );
